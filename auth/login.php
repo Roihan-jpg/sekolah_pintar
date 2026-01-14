@@ -1,55 +1,76 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 // Jika sudah login, cek role dan lempar ke dashboard masing-masing
 if(isset($_SESSION['status']) && $_SESSION['status'] == "login"){
-    if($_SESSION['role'] == 'Admin'){ header("location:index.php"); }
-    else if($_SESSION['role'] == 'Guru'){ header("location:guru_dashboard.php"); }
-    else if($_SESSION['role'] == 'Siswa'){ header("location:siswa_dashboard.php"); }
+    if($_SESSION['role'] == 'Admin'){ header("location:../admin/dashboard.php"); }
+    else if($_SESSION['role'] == 'Guru'){ header("location:../guru/guru_dashboard.php"); }
+    else if($_SESSION['role'] == 'Siswa'){ header("location:../siswa/siswa_dashboard.php"); }
     exit;
 }
 
 // Proses Login
 if(isset($_POST['login'])){
     $username = $_POST['username']; 
-    $password = md5($_POST['password']); // Enkripsi MD5
+    $password = md5($_POST['password']); // Enkripsi MD5 (Sesuai kode asli)
+
+    // --- PERBAIKAN: MENGGUNAKAN PREPARED STATEMENT ---
 
     // 1. CEK ADMIN
-    $cek_admin = mysqli_query($koneksi, "SELECT * FROM tabel_user WHERE username='$username' AND password='$password'");
-    if(mysqli_num_rows($cek_admin) > 0){
-        $d = mysqli_fetch_array($cek_admin);
+    // Siapkan template query dengan tanda tanya (?) sebagai placeholder
+    $stmt = mysqli_prepare($koneksi, "SELECT * FROM tabel_user WHERE username=? AND password=?");
+    // Bind parameter: "ss" artinya string, string (untuk username dan password)
+    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+    // Eksekusi query
+    mysqli_stmt_execute($stmt);
+    // Ambil hasil
+    $result = mysqli_stmt_get_result($stmt);
+
+    if(mysqli_num_rows($result) > 0){
+        $d = mysqli_fetch_array($result);
         $_SESSION['username'] = $d['username'];
         $_SESSION['nama']     = $d['nama_lengkap'];
         $_SESSION['role']     = "Admin";
         $_SESSION['status']   = "login";
-        header("location:index.php");
+        header("location:../admin/dashboard.php");
         exit;
     }
+    mysqli_stmt_close($stmt); // Tutup statement agar bisa dipakai ulang
 
     // 2. CEK GURU (Login pakai NIP)
-    $cek_guru = mysqli_query($koneksi, "SELECT * FROM tabel_guru WHERE nip='$username' AND password='$password'");
-    if(mysqli_num_rows($cek_guru) > 0){
-        $d = mysqli_fetch_array($cek_guru);
+    $stmt = mysqli_prepare($koneksi, "SELECT * FROM tabel_guru WHERE nip=? AND password=?");
+    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if(mysqli_num_rows($result) > 0){
+        $d = mysqli_fetch_array($result);
         $_SESSION['username'] = $d['nip'];
         $_SESSION['nama']     = $d['nama_guru'];
         $_SESSION['role']     = "Guru";
         $_SESSION['status']   = "login";
-        header("location:guru_dashboard.php");
+        header("location:../guru/guru_dashboard.php");
         exit;
     }
+    mysqli_stmt_close($stmt);
 
     // 3. CEK SISWA (Login pakai NIS)
-    $cek_siswa = mysqli_query($koneksi, "SELECT * FROM tabel_siswa WHERE nis='$username' AND password='$password'");
-    if(mysqli_num_rows($cek_siswa) > 0){
-        $d = mysqli_fetch_array($cek_siswa);
+    $stmt = mysqli_prepare($koneksi, "SELECT * FROM tabel_siswa WHERE nis=? AND password=?");
+    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if(mysqli_num_rows($result) > 0){
+        $d = mysqli_fetch_array($result);
         $_SESSION['username'] = $d['nis'];
         $_SESSION['nama']     = $d['nama_lengkap'];
         $_SESSION['role']     = "Siswa";
         $_SESSION['status']   = "login";
-        header("location:siswa_dashboard.php");
+        header("location:../siswa/siswa_dashboard.php");
         exit;
     }
+    mysqli_stmt_close($stmt);
 
     $error = "Akun tidak ditemukan atau Password salah!";
 }
@@ -59,7 +80,7 @@ if(isset($_POST['login'])){
 <html>
 <head>
     <title>Login Sistem Sekolah</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css"> 
     <style>
         body { background: #2c3e50; display: flex; justify-content: center; align-items: center; height: 100vh; margin:0; }
         .login-box { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); width: 100%; max-width: 350px; text-align: center; }

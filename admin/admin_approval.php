@@ -1,20 +1,20 @@
 <?php
 session_start();
 if($_SESSION['status'] != "login"){
-    header("location:login.php");
+    header("location:../auth/login.php");
 }
 ?>
-<?php include 'koneksi.php'; ?>
+<?php include '../config/koneksi.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Admin Approval</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
     <div class="navbar" style="background:#c0392b;"> <h1>📩 Approval Izin Masuk</h1>
-        <a href="index.php">Dashboard</a>
+        <a href="dashboard.php">Dashboard</a>
     </div>
 
     <div class="container">
@@ -48,7 +48,7 @@ if($_SESSION['status'] != "login"){
                     <td><?= $d['jenis_izin'] ?></td>
                     <td><?= $d['keterangan'] ?></td>
                     <td>
-                        <a href="uploads/<?= $d['file_bukti'] ?>" target="_blank" style="color:#3498db; text-decoration:none;">
+                        <a href="../uploads/<?= $d['file_bukti'] ?>" target="_blank" style="color:#3498db; text-decoration:none;">
                             📷 Lihat Foto
                         </a>
                     </td>

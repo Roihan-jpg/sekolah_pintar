@@ -1,7 +1,7 @@
 <?php
-include 'koneksi.php';
+include '../config/koneksi.php';
 session_start();
-if($_SESSION['status'] != "login" || $_SESSION['role'] != "Siswa"){ header("location:login.php"); }
+if($_SESSION['status'] != "login" || $_SESSION['role'] != "Siswa"){ header("location:../auth/login.php"); }
 $nis = $_SESSION['username'];
 
 // --- LOGIC UPLOAD BUKTI BAYAR ---
@@ -17,7 +17,7 @@ if(isset($_POST['kirim_bukti'])){
     // Nama file unik: BUKTI_NIS_WAKTU.jpg
     $nama_baru = "BUKTI_".$nis."_".time().".".$ext;
     
-    if(move_uploaded_file($tmp, "uploads/".$nama_baru)){
+    if(move_uploaded_file($tmp, "../uploads/".$nama_baru)){
         $ket = "SPP Bulan " . $bulan;
         
         // Simpan ke database dengan status PENDING
@@ -35,7 +35,7 @@ if(isset($_POST['kirim_bukti'])){
 
 <!DOCTYPE html>
 <html>
-<head><title>Pembayaran SPP</title><link rel="stylesheet" href="style.css"></head>
+<head><title>Pembayaran SPP</title><link rel="stylesheet" href="../assets/css/style.css"></head>
 <body>
     <div class="navbar" style="background:#2980b9;">
         <h1>💰 Pembayaran SPP</h1>

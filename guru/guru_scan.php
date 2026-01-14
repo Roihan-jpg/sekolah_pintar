@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
-if($_SESSION['role'] != "Guru"){ header("location:login.php"); }
+if($_SESSION['role'] != "Guru"){ header("location:../auth/login.php"); }
 
 // Ambil ID Kelas dari pilihan guru sebelumnya
 if(!isset($_GET['kelas'])){ header("location:guru_pilih_kelas.php"); }
@@ -20,7 +20,7 @@ $nama_kelas = $d_kelas['nama_kelas'];
     <title>Scanner Kelas <?= $nama_kelas ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         body { background: #2c3e50; color: white; text-align: center; font-family: sans-serif; }
         

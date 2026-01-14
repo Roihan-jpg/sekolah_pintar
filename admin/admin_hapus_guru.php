@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
-if($_SESSION['role'] != "Admin"){ header("location:login.php"); }
+if($_SESSION['role'] != "Admin"){ header("location:../auth/login.php"); }
 
 $nip = $_GET['nip'];
 $hapus = mysqli_query($koneksi, "DELETE FROM tabel_guru WHERE nip='$nip'");

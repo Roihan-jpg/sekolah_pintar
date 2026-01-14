@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 if(isset($_POST['simpan'])){
     $nip = $_POST['nip'];
@@ -26,7 +26,7 @@ if(isset($_POST['simpan'])){
 
 <!DOCTYPE html>
 <html>
-<head><title>Tambah Guru</title><link rel="stylesheet" href="style.css"></head>
+<head><title>Tambah Guru</title><link rel="stylesheet" href="../assets/css/style.css"></head>
 <body>
     <div class="navbar"><h1>+ Tambah Guru</h1><a href="admin_guru.php">Batal</a></div>
     <div class="container">

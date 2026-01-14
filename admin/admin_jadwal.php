@@ -1,19 +1,19 @@
 <?php
 session_start();
-include 'koneksi.php';
-if($_SESSION['role'] != "Admin"){ header("location:login.php"); }
+include '../config/koneksi.php';
+if($_SESSION['role'] != "Admin"){ header("location:../auth/login.php"); }
 
 // Filter Kelas
 $kelas_pilih = isset($_GET['kelas']) ? $_GET['kelas'] : '';
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Kelola Jadwal Pelajaran</title><link rel="stylesheet" href="style.css"></head>
+<head><title>Kelola Jadwal Pelajaran</title><link rel="stylesheet" href="../assets/css/style.css"></head>
 <body>
 
     <div class="navbar">
         <h1>📅 Jadwal Pelajaran</h1>
-        <a href="index.php">Dashboard</a>
+        <a href="dashboard.php">Dashboard</a>
     </div>
 
     <div class="container">

@@ -1,20 +1,20 @@
 <?php
 session_start();
 if($_SESSION['status'] != "login"){
-    header("location:login.php");
+    header("location:../auth/login.php");
 }
 ?>
-<?php include 'koneksi.php'; ?>
+<?php include '../config/koneksi.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Input Pembayaran</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <div class="navbar">
         <h1>💰 Kasir Sekolah</h1>
-        <a href="index.php">Kembali ke Dashboard</a>
+        <a href="dashboard.php">Kembali ke Dashboard</a>
     </div>
 
     <div class="container">

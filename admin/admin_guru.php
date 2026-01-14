@@ -1,23 +1,23 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 // Cek Security (Hanya Admin)
 if($_SESSION['status'] != "login" || $_SESSION['role'] != "Admin"){
-    header("location:login.php");
+    header("location:../auth/login.php");
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Manajemen Data Guru</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
     <div class="navbar">
         <h1>👨‍🏫 Data Guru</h1>
-        <a href="index.php">Kembali ke Dashboard</a>
+        <a href="dashboard.php">Kembali ke Dashboard</a>
     </div>
 
     <div class="container">

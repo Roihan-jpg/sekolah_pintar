@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 // Cek Security
-if($_SESSION['role'] != "Admin"){ header("location:login.php"); }
+if($_SESSION['role'] != "Admin"){ header("location:../auth/login.php"); }
 
 $id = $_GET['id'];
 $aksi = $_GET['aksi'];

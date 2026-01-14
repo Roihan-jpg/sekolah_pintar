@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 $nis = $_GET['nis'];
 $data = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_siswa WHERE nis='$nis'"));
 
@@ -33,7 +33,7 @@ if(isset($_POST['update'])){
 
 <!DOCTYPE html>
 <html>
-<head><title>Edit Siswa</title><link rel="stylesheet" href="style.css"></head>
+<head><title>Edit Siswa</title><link rel="stylesheet" href="../assets/css/style.css"></head>
 <body>
     <div class="navbar"><h1>Edit Siswa</h1><a href="admin_siswa.php">Batal</a></div>
     <div class="container">

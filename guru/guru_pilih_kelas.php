@@ -1,10 +1,10 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 // Cek Login Guru
 if($_SESSION['status'] != "login" || $_SESSION['role'] != "Guru"){
-    header("location:login.php");
+    header("location:../auth/login.php");
 }
 ?>
 
@@ -12,7 +12,7 @@ if($_SESSION['status'] != "login" || $_SESSION['role'] != "Guru"){
 <html>
 <head>
     <title>Pilih Kelas Absensi</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         body { background: #f4f7f6; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
         .box-pilih { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; border-top: 5px solid #27ae60; }

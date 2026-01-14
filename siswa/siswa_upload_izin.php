@@ -1,12 +1,12 @@
 <?php
-include 'koneksi.php';
+include '../config/koneksi.php';
 session_start();
-if($_SESSION['status'] != "login" || $_SESSION['role'] != "Siswa"){ header("location:login.php"); }
+if($_SESSION['status'] != "login" || $_SESSION['role'] != "Siswa"){ header("location:../auth/login.php"); }
 $nis = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Izin Siswa</title><link rel="stylesheet" href="style.css"></head>
+<head><title>Izin Siswa</title><link rel="stylesheet" href="../assets/css/style.css"></head>
 <body>
     <div class="navbar" style="background:#2980b9;">
         <h1>📩 Layanan Izin</h1>
@@ -25,7 +25,7 @@ $nis = $_SESSION['username'];
                     $ket = $_POST['keterangan'];
                     $foto = $_FILES['foto_surat']['name'];
                     $tmp = $_FILES['foto_surat']['tmp_name'];
-                    $lokasi = "uploads/" . $foto;
+                    $lokasi = "../uploads/" . $foto;
                     
                     if(move_uploaded_file($tmp, $lokasi)) {
                         $q = mysqli_query($koneksi, "INSERT INTO tabel_perizinan (nis, tanggal_izin, jenis_izin, keterangan, file_bukti, status_approval) 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 $nip = $_GET['nip'];
 $data = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_guru WHERE nip='$nip'"));
 
@@ -27,7 +27,7 @@ if(isset($_POST['update'])){
 
 <!DOCTYPE html>
 <html>
-<head><title>Edit Guru</title><link rel="stylesheet" href="style.css"></head>
+<head><title>Edit Guru</title><link rel="stylesheet" href="../assets/css/style.css"></head>
 <body>
     <div class="navbar"><h1>Edit Data Guru</h1><a href="admin_guru.php">Batal</a></div>
     <div class="container">

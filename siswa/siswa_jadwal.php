@@ -1,9 +1,9 @@
 <?php
-include 'koneksi.php';
+include '../config/koneksi.php';
 session_start();
 
 // Cek Login Siswa
-if($_SESSION['status'] != "login" || $_SESSION['role'] != "Siswa"){ header("location:login.php"); }
+if($_SESSION['status'] != "login" || $_SESSION['role'] != "Siswa"){ header("location:../auth/login.php"); }
 
 $nis = $_SESSION['username'];
 
@@ -16,7 +16,7 @@ $id_kelas = $siswa['id_kelas'];
 <html>
 <head>
     <title>Jadwal Pelajaran Saya</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         /* Style Tabel Jadwal yang Lebih Cantik */
         .jadwal-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }

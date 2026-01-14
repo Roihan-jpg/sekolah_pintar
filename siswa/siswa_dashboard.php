@@ -1,8 +1,8 @@
 <?php
-include 'koneksi.php';
+include '../config/koneksi.php';
 session_start();
 // (Bagian Cek Login tetap sama, jangan dihapus)
-if($_SESSION['status'] != "login" || $_SESSION['role'] != "Siswa"){ header("location:login.php"); }
+if($_SESSION['status'] != "login" || $_SESSION['role'] != "Siswa"){ header("location:../auth/login.php"); }
 $nis_siswa = $_SESSION['username']; 
 
 // Ambil Data Lengkap Siswa untuk Tampilan Kartu
@@ -13,7 +13,7 @@ $data_siswa = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_sis
 <html>
 <head>
     <title>Dashboard Siswa</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
@@ -21,7 +21,7 @@ $data_siswa = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_sis
         <h1>🎓 Panel Siswa</h1>
         <div style="display:flex; align-items:center;">
             <span style="margin-right:15px;"><?= $_SESSION['nama'] ?></span>
-            <a href="logout.php" class="btn-small btn-red">Logout</a>
+            <a href="../auth/logout.php" class="btn-small btn-red">Logout</a>
         </div>
     </div>
 

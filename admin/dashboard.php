@@ -1,13 +1,13 @@
 
 <?php 
 session_start();
-include 'koneksi.php'; 
+include '../config/koneksi.php'; 
 
 // --- SECURITY CHECK ---
 // Cek apakah user sudah login DAN apakah rolenya ADMIN
 if($_SESSION['status'] != "login" || $_SESSION['role'] != "Admin"){
     // Jika bukan admin, tendang ke login
-    header("location:login.php");
+    header("location:../auth/login.php");
     exit();
 }
 
@@ -41,7 +41,7 @@ $total_pending_bayar = $d4['total'];
 <html>
 <head>
     <title>Dashboard Sekolah Pintar</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
@@ -49,7 +49,7 @@ $total_pending_bayar = $d4['total'];
     <h1>🏫 Sekolah Pintar</h1>
     <div style="display:flex; align-items:center;">
         <span style="font-size:14px; margin-right:15px;">Halo, <b><?= $_SESSION['nama'] ?></b></span>
-        <a href="logout.php" style="background:#c0392b; padding:5px 10px; border-radius:4px; font-size:12px;">Logout</a>
+        <a href="../auth/logout.php" style="background:#c0392b; padding:5px 10px; border-radius:4px; font-size:12px;">Logout</a>
     </div>
 </div>
 

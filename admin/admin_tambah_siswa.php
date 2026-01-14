@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 if(isset($_POST['simpan'])){
     $nis = $_POST['nis'];
@@ -32,7 +32,7 @@ if(isset($_POST['simpan'])){
 
 <!DOCTYPE html>
 <html>
-<head><title>Tambah Siswa</title><link rel="stylesheet" href="style.css"></head>
+<head><title>Tambah Siswa</title><link rel="stylesheet" href="../assets/css/style.css"></head>
 <body>
     <div class="navbar"><h1>+ Tambah Siswa</h1><a href="admin_siswa.php">Batal</a></div>
     <div class="container">
