@@ -1,9 +1,9 @@
 <?php
-include 'koneksi.php';
+include '../config/koneksi.php';
 session_start();
 
 if($_SESSION['status'] != "login" || $_SESSION['role'] != "Guru"){ 
-    header("location:login.php"); 
+    header("location:../auth/login.php"); 
 }
 
 $nip = $_SESSION['username'];
@@ -19,7 +19,7 @@ $batas_jam_absen = "08:30:00";
 <html>
 <head>
     <title>Jadwal Mengajar</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         .jadwal-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
         .hari-card { 

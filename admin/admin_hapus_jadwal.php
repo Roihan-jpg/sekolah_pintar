@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php';
+include '../config/koneksi.php';
 $id = $_GET['id'];
 $kelas = $_GET['kelas']; // Biar pas balik tetep di kelas yg sama
 

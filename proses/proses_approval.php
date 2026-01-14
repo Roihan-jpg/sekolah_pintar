@@ -1,11 +1,11 @@
 <?php
 session_start();
 if($_SESSION['status'] != "login"){
-    header("location:login.php");
+    header("location:../auth/login.php");
 }
 ?>
 <?php
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 $id_izin = $_GET['id'];
 $aksi = $_GET['aksi'];

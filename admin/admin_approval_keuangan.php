@@ -1,23 +1,23 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 // Cek Security (Hanya Admin)
 if($_SESSION['status'] != "login" || $_SESSION['role'] != "Admin"){
-    header("location:login.php");
+    header("location:../auth/login.php");
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Verifikasi Pembayaran</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
     <div class="navbar">
         <h1>💰 Verifikasi Pembayaran Masuk</h1>
-        <a href="index.php">Dashboard</a>
+        <a href="dashboard.php">Dashboard</a>
     </div>
 
     <div class="container">
@@ -69,7 +69,7 @@ if($_SESSION['status'] != "login" || $_SESSION['role'] != "Admin"){
                         Rp <?= number_format($d['nominal'], 0, ',', '.') ?>
                     </td>
                     <td>
-                        <a href="uploads/<?= $d['bukti_transfer'] ?>" target="_blank" class="btn-small" style="background:#3498db;">
+                        <a href="../uploads/<?= $d['bukti_transfer'] ?>" target="_blank" class="btn-small" style="background:#3498db;">
                             🖼️ Lihat Bukti
                         </a>
                     </td>

@@ -1,7 +1,7 @@
 <?php
 // 1. Paling atas wajib session_start agar bisa baca data login
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 // 2. Cek apakah user sudah login? Jika belum, tendang.
 if(!isset($_SESSION['status']) || $_SESSION['status'] != "login"){

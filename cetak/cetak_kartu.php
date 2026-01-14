@@ -1,17 +1,17 @@
 <?php 
 session_start();
-include 'koneksi.php'; 
+include '../config/koneksi.php'; 
 
 // CEK KEAMANAN
 if($_SESSION['status'] != "login"){
-    header("location:login.php");
+    header("location:../auth/login.php");
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Cetak Kartu Pelajar</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         /* CSS Khusus Print */

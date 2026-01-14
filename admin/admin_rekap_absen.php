@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
 // Cek Security
-if($_SESSION['status'] != "login" || $_SESSION['role'] != "Admin"){ header("location:login.php"); }
+if($_SESSION['status'] != "login" || $_SESSION['role'] != "Admin"){ header("location:../auth/login.php"); }
 
 // --- LOGIKA FILTER ---
 $bulan_pilih = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
@@ -22,7 +22,7 @@ $jumlah_hari = cal_days_in_month(CAL_GREGORIAN, $bulan_pilih, $tahun_pilih);
 <html>
 <head>
     <title>Rekap Absensi</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         /* --- CSS KHUSUS REKAP (OVERRIDE STYLE GLOBAL) --- */
         .container { max-width: 98%; } /* Lebarkan container agar tabel muat */
@@ -70,7 +70,7 @@ $jumlah_hari = cal_days_in_month(CAL_GREGORIAN, $bulan_pilih, $tahun_pilih);
 
     <div class="navbar">
         <h1>📊 Rekap Absensi</h1>
-        <a href="index.php">Dashboard</a>
+        <a href="dashboard.php">Dashboard</a>
     </div>
 
     <div class="container">

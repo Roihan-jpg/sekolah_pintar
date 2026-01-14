@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../config/koneksi.php';
 
-if($_SESSION['role'] != "Admin"){ header("location:login.php"); }
+if($_SESSION['role'] != "Admin"){ header("location:../auth/login.php"); }
 
 $nis = $_GET['nis'];
 

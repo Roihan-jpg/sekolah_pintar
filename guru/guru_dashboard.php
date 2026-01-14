@@ -1,23 +1,23 @@
 <?php
 session_start();
-include 'koneksi.php'; 
+include '../config/koneksi.php'; 
 
 if($_SESSION['status'] != "login" || $_SESSION['role'] != "Guru"){
-    header("location:login.php");
+    header("location:../auth/login.php");
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Dashboard Guru</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <div class="navbar" style="background:#27ae60;">
         <h1>👨‍🏫 Panel Guru</h1>
         <div style="display:flex; align-items:center;">
             <span style="margin-right:15px; font-size:14px;">Halo, <?= $_SESSION['nama'] ?></span>
-            <a href="logout.php" class="btn-small btn-red">Logout</a>
+            <a href="../auth/logout.php" class="btn-small btn-red">Logout</a>
         </div>
     </div>
 
